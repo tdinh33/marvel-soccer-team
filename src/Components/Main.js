@@ -1,39 +1,46 @@
-import React from 'react'
-import {Cards} from './Cards'
-import axios from "axios"
-import { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { Cards } from './Cards';
+import axios from 'axios';
 
 export const Main = () => {
-  const [url, setUrl] = useState("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=9f82deb88a766ca905ad49be7a45af4c&hash=2a0ed50adbb90ef40cf3612619cd1096")
-  const [item, setItem] = useState();
+  const [url, setUrl] = useState("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=9f82deb88a766ca905ad49be7a45af4c&hash=2a0ed50adbb90ef40cf3612619cd1096");
+  const [originalItems, setOriginalItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get(url)
-      setItem(res.data.data.results);
-    }
+      const res = await axios.get(url);
+      const results = res.data.data.results;
+      setOriginalItems(results);
+      setFilteredItems(results);
+    };
     fetch();
-  }, [url])
-  
+  }, [url]);
+
+  const filterCharacters = (e) => {
+    const search = e.target.value.toLowerCase();
+    const filteredCharacters = originalItems.filter((character) => character.name.toLowerCase().includes(search));
+    setFilteredItems(filteredCharacters);
+  };
+
   return (
     <>
+      <nav className="navbar">
+        <a className="navbar-brand" href="#">
+          <img src='./Images/logo.png' alt='logo' id='logo' />
+        </a>
+      </nav>
+
       <div className='header'>
-          <div className='bg'>
-              <img src="./Images/background.jpg" alt="hehe" />
-          </div>
-          <div className='search-bar'>
-            <img src='./Images/logo.png' alt='logo' />
-            <input type="search" placeholder='Search' className='search' />
-          </div>
+        <div className='bg'></div>
+        <div className='search-bar'>
+          <input type="search" placeholder='Search' className='search' onChange={(e) => filterCharacters(e)} />
+        </div>
       </div>
+
       <div className='content'>
-        
-        {
-          (!item) ? <p>Not Found</p> : <Cards data={item}/> 
-        }
+        {(!filteredItems.length) ? <p>Not Found</p> : <Cards data={filteredItems} />}
       </div>
     </>
-
-  )
-}
+  );
+};

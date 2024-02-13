@@ -35,8 +35,17 @@ body {
 }
 
 .content {
-    width: 80%;
-    margin: 3rem auto;
+    background-color: black;
+    padding: 70px 0;
+
+    background-image: url("https://www.rsvlts.com/cdn/shop/collections/Marvel_Studios_-_Loki_-_Series_1_-_Website_-_Collection_-_Desktop_v2.jpg?v=1693409654");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.content {
+    width: 90%;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 1rem
@@ -55,6 +64,11 @@ p {
     text-align: center;
     font-size: 25px;
 }
+.navbar img{
+    width: 10%;
+}
+
+
 
 .card img {
     width: 100%;
