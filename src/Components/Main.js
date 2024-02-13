@@ -39,7 +39,7 @@ export const Main = () => {
       </div>
 
       <div className='content'>
-        {(!filteredItems.length) ? <p>Not Found</p> : <Cards data={filteredItems} />}
+        {(!filteredItems.length) ? <p> Character Not Found :'(</p> : <Cards data={filteredItems} />}
       </div>
     </>
   );
