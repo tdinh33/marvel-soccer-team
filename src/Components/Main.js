@@ -27,15 +27,18 @@ export const Main = () => {
     <>
       <nav className="navbar">
         <a className="navbar-brand" href="#">
-          <img src='./Images/logo.png' alt='logo' id='logo' />
+          <img className='logo col-4 mt-3' src='./Images/logo.png' alt='logo' id='logo' />
+          <h1 className='title col-12'>MARVEL Soccer Team Selection</h1>
         </a>
       </nav>
 
       <div className='header'>
-        <div className='bg'></div>
-        <div className='search-bar'>
-          <input type="search" placeholder='Search' className='search' onChange={(e) => filterCharacters(e)} />
+        <div className='bg'>
+          <div className='search-bar'>
+            <input type="search" placeholder='Search' className='search' onChange={(e) => filterCharacters(e)} />
+          </div>
         </div>
+        
       </div>
 
       <div className='content'>

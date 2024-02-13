@@ -23,15 +23,16 @@ body {
 .header .search {
     outline: none;
     background: none;
-    border: none;
-    margin-left: 2rem;
+    margin: 0 auto;
+    margin-bottom: 25px;
     width: 350px;
     height: 35px;
     border-radius: 1rem;
     color: white;
-    font-size: 10px;
     padding: 1.2rem;
-    border: 2px solid red;
+    border: 2px solid #B41F23;
+    font-size: 17px;
+    
 }
 
 .content {
@@ -41,6 +42,19 @@ body {
     background-image: url("https://www.rsvlts.com/cdn/shop/collections/Marvel_Studios_-_Loki_-_Series_1_-_Website_-_Collection_-_Desktop_v2.jpg?v=1693409654");
     background-size: cover;
     background-attachment: fixed;
+}
+
+.title {
+    color:white;
+    text-align: center;
+    font-family: Marvel;
+    font-style: oblique;
+    font-weight: 700;
+}
+
+.navbar-brand {
+    margin: 0 auto;
+    display: inline;
 }
 
 .content {
