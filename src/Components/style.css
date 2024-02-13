@@ -40,7 +40,8 @@ body {
     padding: 70px 0;
 
     background-image: url("https://www.rsvlts.com/cdn/shop/collections/Marvel_Studios_-_Loki_-_Series_1_-_Website_-_Collection_-_Desktop_v2.jpg?v=1693409654");
-    background-size: cover;
+    background-size:contain;
+    background-position: center;
     background-attachment: fixed;
 }
 
