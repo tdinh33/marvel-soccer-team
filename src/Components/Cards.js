@@ -1,48 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from 'react-dropdown-select';
 import { useNavigate } from 'react-router-dom';
 
 const options = [
-  { label: "Goalkeeper", value: 1, color: "black" },
-  { label: "Striker", value: 2, color: "black" },
-  { label: "Midfielder", value: 3, color: "black" },
-  { label: "Defender", value: 4, color: "black" },
-  { label: "Additional Player (ST, MD, or DF)", value: 5, color: "black" },
+  { id: 'Goalkeeper', name: 1 },
+  { id: 'Striker', name: 2 },
+  { id: 'Midfielder', name: 3 },
+  { id: 'Defender', name: 4 },
+  {
+    id: 'Additional Player', name: 5, children: [
+      { id: 'Additional Player (ST)', name: 6 },
+      { id: 'Additional Player (MD)', name: 7 },
+      { id: 'Additional Player (DF)', name: 8 },
+    ]
+  },
 ];
 
 export const Cards = ({ data }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedCharacters, setSelectedCharacters] = useState([]);
 
-  const dropdownStyles = {
-    control: (provided) => ({
-      ...provided,
-      border: '1px solid black', // Add border to the dropdown box
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? 'white' : 'black', // Change text color based on selection
-    }),
+  const handleSelectChange = (selected) => {
+    const selectedValue = selected[0];
+    // Check if the option is already selected
+    if (!selectedCharacters.includes(selectedValue.id)) {
+      setSelectedCharacters([...selectedCharacters, selectedValue.id]);
+      setSelectedOption(selectedValue);
+      console.log(`Selected option: ${selectedValue.id} - Character: ${selectedValue.name}`);
+    } else {
+      console.log('Please select a different position.');
+      alert('Please select a different position.');
+    }
   };
+
+  const isOptionDisabled = (option) => selectedCharacters.includes(option.id);
 
   return (
     <>
       {data ? (
         data.map((item) => {
           return (
-            <div className='card' key={item.id}>
-              <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} onClick={() => navigate(`/${item.id}`)} alt='' />
-              <div className='title'>
+            <div className="card" key={item.id}>
+              <img
+                src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                onClick={() => navigate(`/${item.id}`)}
+                alt=""
+              />
+              <div className="title">
                 <h3>{item.name}</h3>
                 <Select
                   id="select"
-                  options={options}
-                  labelField="label" // Use 'label' instead of 'id' for labelField
-                  valueField="value"
-                  style={dropdownStyles} // Apply custom styles to the dropdown
+                  options={options.map((opt) => ({
+                    ...opt,
+                    disabled: isOptionDisabled(opt),
+                  }))}
+                  labelField="id"
+                  valueField="name"
+                  onChange={handleSelectChange}
+                  dropdownPosition="auto"
+                  dropdownGap={0}
+                  style={{ color: 'black' }}
                 />
               </div>
             </div>
-            
           );
         })
       ) : (
