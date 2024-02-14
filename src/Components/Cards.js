@@ -8,7 +8,7 @@ const options = [
   { id: 'Midfielder', name: 3 },
   { id: 'Defender', name: 4 },
   {
-    id: 'Additional Player', name: 5, children: [
+    id: 'Additional Player(ST, MD, or DF)', name: 5, children: [
       { id: 'Additional Player (ST)', name: 6 },
       { id: 'Additional Player (MD)', name: 7 },
       { id: 'Additional Player (DF)', name: 8 },
