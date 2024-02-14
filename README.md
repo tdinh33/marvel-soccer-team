@@ -1,3 +1,17 @@
+# About the App
+This is a simple single page application where user can view MARVEL Characters's details and select them for a 6-aside soccer team.
+- Most of the acceptance criteria were achieved except for "Share" function. 
+- Search bar was added to filter seach characters, meaning the result will responsively change according to the user's input. 
+- Furthermore, to reset the selecting, user will need to reload the page. 
+
+Furture Improvements: 
+- User will be able to see the map with their final team selection. 
+- Share function
+- A reset button: reset any character select.
+- May include cool and futuristic hover effects. 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
